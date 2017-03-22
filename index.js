@@ -1,17 +1,24 @@
-var wpi = require('wiring-pi');
 
-// GPIO pin of the led
-var configPin = 7;
-// Blinking interval in usec
-var configTimeout = 1000;
+try {
+	var wpi = require('wiring-pi');
 
-wpi.setup('wpi');
-wpi.pinMode(configPin, wpi.OUTPUT);
+	// GPIO pin of the led
+	var configPin = 7;
+	// Blinking interval in usec
+	var configTimeout = 1000;
 
-var isLedOn = 0;
+	wpi.setup('wpi');
+	wpi.pinMode(configPin, wpi.OUTPUT);
 
-setInterval(function() {
-	isLedOn = +!isLedOn;
-	//isLedOn = !isLedOn;
-	wpi.digitalWrite(configPin, isLedOn );
-}, configTimeout);
+	var isLedOn = 0;
+
+	setInterval(function() {
+		isLedOn = +!isLedOn;
+		//isLedOn = !isLedOn;
+		wpi.digitalWrite(configPin, isLedOn );
+	}, configTimeout);
+
+} catch (er) {
+	console.log("Failed to run WPI");
+	wpi = null
+}
