@@ -10,15 +10,6 @@ try {
 
 	wpi.setup('wpi');
 	wpi.pinMode(configPin, wpi.OUTPUT);
-
-	var isLedOn = 0;
-
-	setInterval(function() {
-		isLedOn = +!isLedOn;
-		//isLedOn = !isLedOn;
-		wpi.digitalWrite(configPin, isLedOn );
-	}, configTimeout);
-
 } catch (er) {
 	console.log("Failed to run WPI");
 	wpi = null
